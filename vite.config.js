@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// Tell Vite to prefix every link with /le-social-preview/
+// Serve assets relative to the HTML
 export default defineConfig({
-  base: '/le-social-preview/',
+  base: './',
   plugins: [react()],
 })
