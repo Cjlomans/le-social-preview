@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Le Social Banner</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+    
+    .banner-container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+    
+    .banner-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      object-fit: cover;
+    }
+    
+    .banner-image.active {
+      opacity: 1;
+    }
+    
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      padding: 0 20px;
+    }
+    
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-family: 'Syne', sans-serif;
+    }
+    
+    p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      font-family: 'Proxima Nova', 'Inter', sans-serif;
+    }
+    
+    .cta-button {
+      background-color: #b48a7a;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color 0.3s;
+      font-family: 'Proxima Nova', 'Inter', sans-serif;
+      cursor: pointer;
+    }
+    
+    .cta-button:hover {
+      background-color: #e6d6c9;
+      color: #b48a7a;
+    }
+  </style>
+</head>
+<body>
+  <div class="banner-container">
+    <img src="/images/hero/black-mob-wife-table.jpg" alt="Black Kit - Mob Wife" class="banner-image">
+    <img src="/images/hero/orange-pink-photobooth.jpg" alt="Orange and Pink Kit" class="banner-image">
+    <img src="/images/hero/pool-party-flamingo-table.jpg" alt="Pool Party Kit - Flamingo" class="banner-image">
+    <img src="/images/hero/white-photobooth.jpg" alt="White Kit" class="banner-image">
+    
+    <div class="overlay">
+      <h1>Your Creative Flair Starts Here</h1>
+      <p>Premium Event Styling Kits for Unforgettable Celebrations</p>
+      <button id="bookButton" class="cta-button">Book Your Kit</button>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const images = document.querySelectorAll('.banner-image');
+      let currentIndex = 0;
+      
+      // Function to check if images are loading
+      images.forEach((img, index) => {
+        img.onload = function() {
+          console.log(`Image ${index} loaded: ${img.src}`);
+        };
+        img.onerror = function() {
+          console.error(`Failed to load image ${index}: ${img.src}`);
+        };
+      });
+      
+      // Set the first image as active
+      images[0].classList.add('active');
+      
+      // Function to rotate images
+      function rotateImages() {
+        images[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % images.length;
+        images[currentIndex].classList.add('active');
+        console.log(`Rotating to image ${currentIndex}: ${images[currentIndex].src}`);
+      }
+      
+      // Start rotation
+      setInterval(rotateImages, 4000);
+
+      // Add click event for the Book Your Kit button
+      document.getElementById('bookButton').addEventListener('click', function() {
+        // Use parent.location to navigate from within the iframe
+        parent.location.href = '/#/booking';
+      });
+    });
+  </script>
+</body>
+</html>
+
