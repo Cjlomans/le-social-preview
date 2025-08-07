@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// Serve assets relative to the HTML
+// Tell Vite to prefix every URL with your repo name
 export default defineConfig({
-  base: './',
+  base: '/le-social-preview/',
   plugins: [react()],
 })
